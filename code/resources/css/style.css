@@ -1,0 +1,131 @@
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+/* GENERAL SETTINGS */
+
+body {
+  background-color: #fff;
+  font-family: 'Lato', sans-serif;
+}
+
+#view-1 {
+	display: none;
+}
+
+/* Map Chart */
+
+.map-background {
+	fill: none;
+}
+
+.municipality {
+	vector-effect: non-scaling-stroke;
+	cursor: pointer;
+	fill: none;
+	opacity: 0;
+	display: none;
+	stroke-width: 0.5px;
+	stroke: #fff;
+}
+
+.county {
+	fill: #ccc;
+	cursor: pointer;
+}
+
+.border {
+	fill: none;
+	vector-effect: non-scaling-stroke;
+}
+
+.county-border {
+	stroke: #BFBFBF;
+	stroke-width: 1.5px;
+	fill: none;
+	vector-effect: non-scaling-stroke;
+}
+
+.source {
+	font-size: 10px;
+	color: #ccc;
+}
+
+.chart-title {
+	font-size: 18px;
+	color: #ADADAD;
+}
+
+.figure-num {
+	font-size: 35px;
+	color: green;
+}
+
+.figure-text {
+	font-size: 28px;
+	color: green;
+}
+
+h1 {
+	color: green;
+}
+
+.legend-text {
+	font-size: 10px;
+}
+
+#arrivals-explanation {
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	border-radius: 25px;
+	border: 2px solid black;
+	padding: 20px;
+	top: 25%;
+	margin: auto;
+	left: 0;
+	right: 0;
+}
+
+#about {
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	border-radius: 25px;
+	border: 2px solid black;
+	padding: 20px;
+	top: 25%;
+	margin: auto;
+	left: 0;
+	right: 0;
+}
+
+.shortstory-wrapper {
+	display: none;
+	opacity: 0;
+}
+
+.ss-title {
+	display: none;
+}
+
+.ss-title.active {
+	display: inline;
+}
+
+.ss-chart {
+	display: none;
+}
+
+.ss-chart.active {
+	display: inline;
+}  
+
+#scroll-btn {
+	position:absolute;
+	font-size: 14px;
+	top: 600px;
+	left: 15px;
+	width: 100px;
+	opacity: 0;
+	padding-right: 20px;
+}

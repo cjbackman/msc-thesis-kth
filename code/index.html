@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Carl-Johan Backman">
+
+  <title>Master Thesis</title>
+
+  <link href="vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="vendors/c3/c3.css" rel="stylesheet" type="text/css">
+  <link href="vendors/d3-tooltip/tooltip.css" rel="stylesheet" type="text/css">
+  <link href="vendors/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
+  <link href="resources/css/style.css" rel="stylesheet" type="text/css">  
+  
+</head>
+<body>
+
+  <div class="container" id="main">
+    <!-- Intro -->
+    <div class="row">
+
+      <div class="col-md-12">
+        <h1 class="text-center">AsylKoll</h1>
+      </div>
+
+      <div class="col-md-12 text-center" style="margin-top: 30px; margin-bottom:30px;">
+        <button class="btn btn-success view-btn disabled" data-view="0" id="btn0"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Mottagna</button>
+        <button class="btn btn-success view-btn" data-view="1" id="btn1">Asyl <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container" id="view-0">
+    <div class="row">
+      <div class="col-md-12">
+        <p id="view-text">
+        <b style="color: green;">Kommunmottagen:</b> Som nyanländ kommunmottagen räknas de utländska medborgare som beviljats uppehållstillstånd i Sverige som flyktingar, skyddsbehövande, efter synnerligen ömmande omständigheter eller som anhöriga.</p>
+      </div> 
+      <div class="col-md-6" id="wrapper-map"></div>
+      <div class="col-md-6" id="wrapper-arrivals"></div>
+      <div class="col-md-12" id="wrapper-arrivals-citizenship"></div>
+    </div>
+  </div>
+
+  <div class="container" id="view-1">
+    <div class="row">
+      <div class="col-md-6" id="wrapper-asylum"></div>
+      <div class="col-md-6" id="wrapper-opinion"></div>
+      <!-- <div class="col-md-6" id="wrapper-deficit"></div> -->
+      <div class="col-md-12" id="wrapper-figures"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center" style="margin-top: 20px; margin-bottom: 20px;"><a href="#" id="about-link">Om verktyget</a></div>
+    </div>
+  </div>
+
+  <div id="scroll-btn" class="text-center">
+    Se var de mottagna i <span id="scroll-county"></span> kom ifrån<br>
+    <a href="#coo"><span class="glyphicon glyphicon-chevron-down" style="font-size:30px;"></span></a>
+  </div>
+
+  <div id="about">
+    <h3>Om AsylKoll</h3>
+    <br>
+    <p>AsylKoll ett verktyg för att visa den data som Migrationsverket kontinuerligt publicerar på sin hemsida. Verktyget är uppbyggt av enkla, interaktiva grafer som gör det möjligt för användaren att utforska materialet och snabbt få en överblick av Sveriges asylinvandring. Verktyget har två vyer. En med information om kommunmottagna och en med information om asylansökningar. Växla mellan vyerna genom att klicka på knapparna högst upp på sidan.</p>
+    <br>
+    <p><a href="#" id="about-close">Stäng</a></p>
+  </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="vendors/jquery/jquery-1.12.1.min.js"></script>
+  <script src="vendors/d3/d3.min.js" charset="utf-8"></script>
+  <script src="vendors/c3/c3.js"></script>
+  <script src="vendors/topojson/topojson.v1.min.js"></script>
+  <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+  <script src="vendors/d3-tooltip/tooltip.js"></script>
+  <script src="vendors/d3-queue/d3-queue.min.js"></script>
+  <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
+
+  <script src="resources/js/globals.js"></script>
+  <script src="resources/js/geofinder.js"></script>
+  <script src="resources/js/c3Settings.js"></script>
+  <script src="resources/js/storySettings.js"></script>
+  <script src="resources/js/map.js"></script>
+  <script src="resources/js/mapChart.js"></script>
+  <script src="resources/js/opinion.js"></script>
+  <script src="resources/js/figures.js"></script>
+  <script src="resources/js/asylum.js"></script>
+  <script src="resources/js/arrivals.js"></script>
+  <script src="resources/js/deficit.js"></script>
+  <script src="resources/js/storyManager.js"></script>
+  <script src="resources/js/storySlider.js"></script>
+
+  <script>
+
+  storyManager.generate(storySettings.map);
+  storyManager.generate(storySettings.arrivals);
+
+  d3.selectAll(".view-btn").on("click", function () {
+    var view = d3.select(this).attr("data-view");
+    var next = (+view + 1) % 2;
+
+    d3.select(this).classed("disabled", true);
+    d3.select("#btn" + next).classed("disabled", false);
+
+    if (globals.view != view) slide(view);
+  });
+
+  d3.select("#about-link").on("click", showExplanation);
+
+  //Some utils
+  function slide (nextView) {
+    var order = nextView == "0" ? ["right", "left"] : ["left", "right"];
+    var currentView = (+nextView + 1) % 2;
+
+    $("#view-" + currentView).toggle("slide", {direction: order[0]}, function () {
+      $("#view-" + nextView).toggle("slide", {direction: order[1]}, function () {
+        if (globals.firstSlide) {
+
+          storyManager.generate(storySettings.opinion);
+          storyManager.generate(storySettings.asylum);
+          storyManager.generate(storySettings.figures);
+
+          globals.firstSlide = false;
+        }
+      });
+    });
+
+    globals.view = nextView;
+  }
+
+  function showExplanation (d) {
+    var w = screen.width < 500 ? screen.width * 0.8 : "500px";
+    d3.select("#view-" + globals.view).style("opacity", 0.3);
+    d3.select("#about").style("display", "block").style("width", w);
+    d3.select("#about-close").on("click", hideExplanation);
+  }
+  function hideExplanation (d) {
+    d3.select("#about").style("display", "none");
+    d3.select("#view-" + globals.view).style("opacity", 1).on("click", null);
+  }
+
+  </script>
+</body>
+</html>

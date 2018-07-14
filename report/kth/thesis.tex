@@ -1,0 +1,169 @@
+\documentclass[a4paper,11pt,oldfontcommands]{packages/kth-mag}
+
+%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%
+
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\usepackage[latin1]{inputenc}
+\usepackage[swedish,english]{babel}
+\usepackage{packages/modifications}
+\usepackage[numbers]{natbib}
+\usepackage{epigraph}
+%\usepackage[backend=biber,style=ieee]{biblatex}
+%\usepackage{csquotes}
+
+%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%
+
+\bibliographystyle{IEEEtranN} 
+%\addbibresource{refs.bib}
+\renewcommand{\sc}{\textsc}
+
+%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%
+
+\title{Spreading a Fact-Based Worldview}
+\subtitle{Narrative Information Visualization Through User-Centered Data Stories}
+%\foreigntitle{Svensk titel}
+\author{Carl-Johan Backman \\ \small{\texttt{\lowercase{cjba@kth.se}}}}
+\date{}
+\blurb{Master's Thesis at NADA\\Supervisor: Mario Romero Vega / \texttt{marior@kth.se}\\Examiner: Tino Weinkauf / \texttt{weinkauf@kth.se}}
+\trita{} 
+
+%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%
+
+\begin{document}
+\frontmatter
+\pagestyle{empty}
+\removepagenumbers
+\maketitle
+\selectlanguage{english}
+
+\begin{abstract}
+Abstract
+\end{abstract}
+\clearpage
+
+\begin{foreignabstract}{swedish}
+Sammanfattning
+\end{foreignabstract}
+\clearpage
+
+\tableofcontents*
+
+\mainmatter
+\pagestyle{newchap}
+
+\chapter{Introduction}
+\section{Background}
+\section{Motivation}
+\section{Research Question}
+\section{Outline}
+
+\chapter{Related Work}
+
+\epigraph{[That is] the essential dilemma of narrative designs - how to reduce the magnificent four-dimensional reality of time and three-space into little marks of paper flatlands.}{\textit{Edward Tufte \cite{tufte1990envinf}\\ Envisioning Information (1990)}}
+
+The work presented in this thesis is motivated by the increasing interest and use of information visualization to convey stories about data. This growing interest, and practice, of \emph{narrative visualization} is most notable among journalists, but lately also in the scientific world \cite{eccles2008stories,ma2012scientific}. While research in information visualization has, historically, focused on data analysis and exploration, there has been a slight shift in recent years \cite{kosara2013storytelling}. Presentation and communication have attracted more attention, and research about narrative visualization is becoming more established. Despite that, there is a lack of studies which evaluate if a story's impact on a reader is the same as the impact inteded by the author. Most of the current research focuses instead only on how visualizations are designed and framed. Therefore, we will in this paper construct a visual narrative, based partly on existing research, and then evaluate how well we are able to achieve our intended impact on the reader. In particular, we will focus on how to construct a data-driven story that: i) encourages reader engagement; and ii) facilitates learning and memorability. This will be done by combining elements of ''game-y'' visualizations with classic narrative visualizations \cite{diakopoulos2011playable}. 
+
+Since reader engagement and learning, or memorability, are desired outcomes of many narrative visualizations, this research should be valuable to a large fraction of the community involved with creating such narratives. Especially journalists and educators ought to benefit from this work, since they often share a similar desire to catch the reader's interest, encourage the reader to explore the data by herself, and still learn the story intended by the author. In order not to reinvent the wheel, we will draw on existing research when constructing our story. Thus, below we present previous work related to this thesis and we start by defining the scope of narrative visualization.
+
+\section{Narrative Visualization}
+Narrative visualization is a young and emerging field within information visualization. However, up until now the subject \emph{narrative visualization} has been loosely defined. In this thesis we follow the definition of visual data stories given by \citet{lee2015more}, i.e.: i) a story consists of story pieces backed up by data; ii) most of these pieces are visualized to support one or more intended messages; and iii) the pieces are presented in a meaningful order, or with some connection between them, to support the author's high-level communication goal.
+
+One of the first papers to acknowledge the potential of storytelling in information visualization was \citet{gershon2001storytelling}. In the paper they present a number of methods that can be used to build a story effectively using visualizations, which in their case is a story about a hostage situation. Even though the authors do not actually describe any data visualizations in detail, they argue that storytelling is a particularly useful tool when conveying key information to the reader. 
+
+In their paper, \citet{segel2010narrative} review the design space of narrative visualization and classify different genres. The authors identify seven genres and give some general advice on how to design narrative visualizations. In addition, they also reflect on ways of balancing \emph{author-driven} versus \emph{reader-driven} stories. While storytelling, historically, has had more of an author-driven structure, information visualization opens up for increased interactivity and reader-driver stories.
+
+The design space is, however, only one side of narrative visualization. Another equally important aspect is what effect the stories have on the readers. This is touched upon by \citet{hullman2011visualization}, when they investigate how different rhetorical decisions, regarding how to frame a story, affect readers' interpretations of the story. This research has been extended by \citet{hullman2013deeper}, into showing how to effectively sequence visualizations in a story. They find it is most effective to sequence by a temporal ordering and worse to sequence on granularity.
+
+\subsection{Reader Engagement}
+Given the interactive information visualizations available today, a common goal of designers is to create visualizations that encourage the reader to engage with the data and explore it. \citet{diakopoulos2011playable} try to tackle this by using game mechanics. Thus, by constructing a story as a game, the user tasks are governed by the structure of the game rather than by a linear sequencing, as stories usually are. The game structure increases the reader engagement while decreasing the potential for insights and learning.
+
+Another approach to increasing reader engagement can be found in \citet{yousuf2014constructing}. The authors present their framework ''VisEN'', which dynamically creates personalized narratives as the reader explores the data. They find that these automatically generated and personalized stories have a positive impact on the reader's learning, by increasing and improving their engagement with the data. Related to this research, albeit not exactly the same, is that of \citet{boy2015can}. They find instead that, the use of stories in relation to interactive visualizations does not necessarily increase the reader engagement.
+
+\citet{moere2011role} argue for the importance of aesthetics when designing information visualizations. The authors write that a \emph{''highly aesthetic representation may compel the user to engage with the data''}. They provide a model of design in information visualization, to assist in this work. The model defines three design domains - visualization practice, visualization studies and visualization exploration - which all have specific implications for design considerations. Moreover, aesthetics is also an important factor to take into account when trying to create memorable visualizations.
+
+\subsection{Learning and Memorability}
+Constructing stories that the reader learns from, i.e. remembers, is of interest for anyone trying to convey a message. There is an ongoing debate in the research society on how to design memorable visualizations. For a long time the consensus was to keep charts and visualizations as plain and minimalistic as possible. Implying that decorative and other non-related imagery, also called ''chart junk'', should be avoided \cite{tufte1983visual}. \citet{bateman2010useful} go against this consensus and argue that chart junk does not affect readers interpretation accuracy, but rather it increases the recall of the visualizations. 
+
+\citet{borkin2013makes,borkin2016beyond} draw similar conclusions when investigating what makes visualizations memorable. They find that very plain charts and visualizations are difficult for readers to remember, compared to more uniquely designed visualizations. In addition, they find strong evidence for the importance of using titles and annotations in order to make a story memorable. However, the authors acknowledge the difficulty in ensuring that the reader remembers the \emph{right} thing: \emph{''We do not want just any part of the visualization to stick (e.g., chart junk), but rather we want the most important relevant aspects of the data or trend the author is trying to convey to stick.''} \cite{borkin2013makes}.
+
+
+\begin{comment}
+
+
+Visualization pipeline ?
+Taxonomy to follow
+Vitruvius triangle
+
+An important distinction between classic information visualization and narrative visualization is that the former tends to focus on analysis and ability of exploration of the datasets which it maps while the latter is more focused on the presentation and communication of insights concealed in the data. The implications of this is that information visualization in general have focused on experts (e.g. statisticians, scientists) who might be used to working with data and need tools to explore it accurately. Narrative visualization is different in this case since it often targets readers that are not experts and not used to data or statistics. This have important implications when constructing the story. For one thing the importance of accompanying text has been proven in several studies \cite{borkin2016beyond,segel2010narrative}.
+
+As \citet{tufte1990envinf} writes ''clutter and confusion are failures of design, not attributes of information''.
+
+\cite{hullman2013contextifier} automatically produce custom stories to data in order to increase understanding?
+
+
+
+
+'At a minimum, stories concern temporal sequences - situations and events unfolding in time.' \cite{herman2011basic}
+
+A good definition for narrative visualization in \cite{scopemore} 
+
+Important research to create a taxonomy 
+
+
+which encompasses several different subfields, e.g. computer science, psychology, design. However, to generalize it is, as is hinted in the name, a marriage of information visualization and storytelling. In this section we will describe relevant research in both these two subfields before merging them and ending the section with current research in narrative visualization.
+
+
+\section{Information Visualization}
+Information visualization can be understood as 'the use of computer-supported interactive visual representations of abstract data to amplify cognition.' \cite{card1999readings}.
+
+Beautiful qoute from \cite{tufte1990envinf} 'to envision information - and what bright and splendid visions can result - is to work at the intersection of image, word, number, art'.
+
+Narrative information visualization is a young and emerging field within information visualization but nevertheless interesting research has already been conducted. In order to align the research presented in this paper with existing research in information visualization the taxonomy used in this paper stems from several well-known sources \cite{amar2004,shneiderman1996eyes,amar2005low,chi2000taxonomy}.
+
+Tips on how to design information visualization and what needs that should be met have been researched \cite{amar2004,amar2005low}
+
+\section{Storytelling}
+
+Something from \cite{herman2011basic} and perhaps \cite{blundell1988art}.
+
+\section{Narrative Visualization}
+
+Some kind of definition in \cite{hullman2011visualization}
+
+First to notice the use of adding stories to visualization were \cite{gershon2001storytelling}.
+
+
+Author-driven versus reader-driven, and design space \cite{segel2010narrative}
+
+
+There is reasearch that refutes that adding adding introductory stories to exploratory visualization increases user-engagement \cite{boy2015can}. 
+
+Research on which narrative visualizations that have the desried outcome, i.e. conveying a story, on the readers is still quite unexplored. Therea are no clear models for narrative visualization. However, some research give directions on how to create a story that people understand and remember \cite{borkin2016beyond}.
+
+The curse of dimensionality, i.e. showing high-dimensional data is difficult \cite{bertini2011quality}.
+
+Discuss and compare \cite{chi2000taxonomy,card1999readings,north2009visualization}, i.e. the visualization pipleline.
+
+\end{comment}
+
+\chapter{Method}
+
+\chapter{Results}
+
+\chapter{Discussion}
+
+\chapter{Conclusions}
+
+\bibliography{refs}
+%\printbibliography
+
+%%%%%%%%%%%% APPENDIX %%%%%%%%%%%%
+
+\appendix
+\addappheadtotoc
+\chapter{Appendix Placeholder}
+\label{appA}
+
+\end{document}
