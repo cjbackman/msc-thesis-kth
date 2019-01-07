@@ -1,1 +1,1 @@
-# Master's Thesis 2016
+# Master's Thesis
